@@ -135,16 +135,51 @@
 	<div class="container-fluid">
 		<h5 class="toc-header"><b>Table of Contents</b></h5>
 		<ul class="toc">
-			<li class="toc-item"><a href="#!">Alvin</a></li>
-			<li class="toc-item"><a href="#!">Alvin</a></li>
-			<li class="toc-item"><a href="#!">Alvin</a></li>
-			<li class="toc-item"><a href="#!">Alvin</a></li>
+			<li class="toc-item"><a href="#login">Login</a></li>
+			<li class="toc-item"><a href="#acara">Acara</a></li>
+			<li class="toc-item"><a href="#beasiswa">Beasiswa</a></li>
+			<li class="toc-item"><a href="#formulir">Formulir</a></li>
+			<li class="toc-item"><a href="#lembaga">Lembaga</a></li>
+			<li class="toc-item"><a href="#rekrutmen">Rekrutmen</a></li>
+			<li class="toc-item"><a href="#sertifikat">Sertifikat</a></li>
+			<li class="toc-item"><a href="#akun">Akun</a></li>
 		</ul>
 	</div>
 
 
-	<div class="container-fluid">
-		<h5 class="list-header"><b>Table of Contents</b></h5>
+	<div class="container-fluid scrollspy" id="login">
+		<h5 class="list-header"><b>Login</b></h5>
+		<ul class="list">
+			<li class="list-item"><a href="#!">Login Sebagai Administrator</a></li>
+		</ul>
+	</div>
+
+	<div class="container-fluid scrollspy" id="acara">
+		<h5 class="list-header"><b>Acara</b></h5>
+		<ul class="list">
+			<li class="list-item"><a href="#!">Acara Overview</a></li>
+			<li class="list-item"><a href="#!">Tambah Acara Baru</a></li>
+			<li class="list-item"><a href="#!">Modifikasi Acara</a></li>
+			<li class="list-item"><a href="#!">Hapus Acara</a></li>
+			<li class="list-item"><a href="#!">Panitia Acara</a></li>
+			<li class="list-item"><a href="#!">Tambah Panitia</a></li>
+			<li class="list-item"><a href="#!">Modifikasi Panitia</a></li>
+			<li class="list-item"><a href="#!">Hapus Panitia</a></li>
+		</ul>
+	</div>
+
+	<div class="container-fluid scrollspy" id="beasiswa">
+		<h5 class="list-header"><b>Beasiswa</b></h5>
+		<ul class="list">
+			<li class="list-item"><a href="#!">Beasiswa Overview</a></li>
+			<li class="list-item"><a href="#!">Tambah Beasiswa Baru</a></li>
+			<li class="list-item"><a href="#!">Modifikasi Beasiswa</a></li>
+			<li class="list-item"><a href="#!">Hapus Beasiswa</a></li>
+		</ul>
+	</div>
+
+	<div class="container-fluid scrollspy" id="formulir">
+		<h5 class="list-header"><b>Formulir</b></h5>
 		<ul class="list">
 			<li class="list-item"><a href="#!">Alvin</a></li>
 			<li class="list-item"><a href="#!">Alvin</a></li>
@@ -152,6 +187,46 @@
 			<li class="list-item"><a href="#!">Alvin</a></li>
 		</ul>
 	</div>
+
+		<div class="container-fluid scrollspy" id="lembaga">
+			<h5 class="list-header"><b>Lembaga</b></h5>
+			<ul class="list">
+				<li class="list-item"><a href="#!">Alvin</a></li>
+				<li class="list-item"><a href="#!">Alvin</a></li>
+				<li class="list-item"><a href="#!">Alvin</a></li>
+				<li class="list-item"><a href="#!">Alvin</a></li>
+			</ul>
+		</div>
+
+		<div class="container-fluid scrollspy" id="rekrutmen">
+			<h5 class="list-header"><b>Rekrutmen</b></h5>
+			<ul class="list">
+				<li class="list-item"><a href="#!">Alvin</a></li>
+				<li class="list-item"><a href="#!">Alvin</a></li>
+				<li class="list-item"><a href="#!">Alvin</a></li>
+				<li class="list-item"><a href="#!">Alvin</a></li>
+			</ul>
+		</div>
+
+		<div class="container-fluid scrollspy" id="sertifikat">
+			<h5 class="list-header"><b>Sertifikat</b></h5>
+			<ul class="list">
+				<li class="list-item"><a href="#!">Alvin</a></li>
+				<li class="list-item"><a href="#!">Alvin</a></li>
+				<li class="list-item"><a href="#!">Alvin</a></li>
+				<li class="list-item"><a href="#!">Alvin</a></li>
+			</ul>
+		</div>
+
+		<div class="container-fluid scrollspy" id="akun">
+			<h5 class="list-header"><b>Akun</b></h5>
+			<ul class="list">
+				<li class="list-item"><a href="#!">Alvin</a></li>
+				<li class="list-item"><a href="#!">Alvin</a></li>
+				<li class="list-item"><a href="#!">Alvin</a></li>
+				<li class="list-item"><a href="#!">Alvin</a></li>
+			</ul>
+		</div>
 </main>
 
 <footer class="page-footer grey darken-3" style="bottom:0;">
@@ -173,6 +248,10 @@
 			closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
 		}
 		);
+		$(document).ready(function(){
+  $('.scrollspy').scrollSpy();
+});
+
 </script>
 
 </body>
