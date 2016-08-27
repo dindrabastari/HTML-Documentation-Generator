@@ -1,0 +1,158 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+header, main, footer {
+  padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+ul.side-nav.fixed li.logo {
+    text-align: center;
+    padding-top: 32px;
+    padding-bottom: 80px;
+    background-color: #fe6c61;
+}
+
+ul.side-nav.fixed li {
+    line-height: 44px;
+}
+
+#nav-mobile li.search {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 120px;
+	margin-top: 1px;
+	padding: 1px 0 0 0;
+	z-index: 2;
+}
+
+#nav-mobile li.search .search-wrapper input#search {
+    display: block;
+    font-size: 16px;
+    font-weight: 300;
+    width: 100%;
+    height: 45px;
+    margin: 0;
+    padding: 0 45px 0 15px;
+    border: 0;
+}
+
+#nav-mobile li.search .search-wrapper {
+    margin: 0 12px;
+    transition: margin .25s ease;
+}
+
+#nav-mobile li.search .search-wrapper i.material-icons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+#nav-mobile li.search .search-results {
+    margin: 0;
+    border-top: 1px solid #e9e9e9;
+    background-color: #fff;
+}
+
+ul.side-nav.fixed li a {
+    font-size: 13px;
+    line-height: 44px;
+    height: 44px;
+    padding: 0 30px;
+    color: white;
+}
+
+ul.side-nav.fixed ul.collapsible-accordion a.collapsible-header {
+    padding: 0 30px;
+}
+
+ul.side-nav.fixed ul.collapsible-accordion .collapsible-body li a {
+    font-weight: 400;
+    padding: 0 37.5px 0 45px;
+}
+
+nav.top-nav {
+    box-shadow: none;
+}
+
+ul.side-nav.fixed {
+    overflow: hidden;
+}
+.side-nav .collapsible li
+, .side-nav.fixed .collapsible li {
+    background-color: #343131;
+}
+#logo-container {
+    height: 57px;
+    margin-bottom: 32px;
+}
+.container-fluid{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+ body {
+display: flex;
+min-height: 100vh;
+flex-direction: column;
+}
+
+main {
+flex: 1 0 auto;
+}
+.toc{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+li.toc-item{
+    list-style-type: square;
+}
+li.toc-item a{
+    color:#eb7077;
+}
+.toc-header {
+    color:#343131;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.list{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+li.list-item{
+    list-style-type: disc;
+}
+li.list-item a{
+    color:#eb7077;
+}
+.list-header {
+    color:#343131;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+main .container-fluid{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.side-nav{
+    background-color: #343131;
+}
+svg path{
+    fill:black;
+}
