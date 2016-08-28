@@ -68,33 +68,70 @@
 				<div class="search-results"></div>
 			</div>
 		</li>
-		<li class="bold"><a href="../dashboard" class="waves-effect waves-teal">Dashboard</a></li>
-		<li class="bold"><a href="../create" class="waves-effect waves-teal">Create New Documentation</a></li>
-		<li class="bold"><a href="../list" class="waves-effect waves-teal">Documentation List</a></li>
+		<li class="bold"><a href="http://materializecss.com/mobile.html" class="waves-effect waves-teal">Dashboard</a></li>
+		<li class="bold"><a href="about.html" class="waves-effect waves-teal">Create New Documentation</a></li>
+		<li class="bold"><a href="getting-started.html" class="waves-effect waves-teal">Documentation List</a></li>
 		<li class="divider"><a>Documentation Sub Menu</a></li>
 		<li class="bold sub-menu"><a href="../create_category" class="waves-effect waves-teal">Add New Categories</a></li>
 		<li class="bold sub-menu"><a href="../list_category" class="waves-effect waves-teal">Categories List</a></li>
 	</ul>
 </header>
 
-<main class="valign-wrapper">
-	<div class="container valign">
-		<h5 class="header-title center">Edit 'Test' Documentation</h5>
+<main>
+	<div class="container-fluid">
+		<h5 class="header-title center">Installation Category<small><a href="../edit_category/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Category Name"><i class=" material-icons">edit</i></a></small></h5>
 		<div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s10">
-          <input id="judul" type="text" class="validate" value="Test Documentation">
-          <label for="judul">Documentation Title</label>
-        </div>
-		<div class="input-field col s2 center-align">
-			<button class="btn btn-floating waves-effect waves-light red" type="submit" name="action">
-			  <i class="material-icons right">add</i>
-			</button>
-		</div>
-      </div>
-    </form>
-  </div>
+			<div class="col s12">
+				<table class="responsive-table highlight">
+			        <thead>
+			          <tr>
+			              <th data-field="id">Page Name</th>
+			              <th data-field="name">Creation Date</th>
+			              <th data-field="price">Action</th>
+			          </tr>
+			        </thead>
+
+			        <tbody>
+			          <tr>
+			            <td>Downloading CodeIgniter</td>
+			            <td>21/8/2016</td>
+			            <td>
+							<a href="../view_kategori/?id=1" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
+							<a href="../edit_page/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="material-icons">edit</i></a>
+							<a href="../delete_kategori/?id=1" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
+						</td>
+			          </tr>
+			          <tr>
+			            <td>Installation Instructions</td>
+			            <td>21/8/2016</td>
+						<td>
+							<a href="../view_kategori/?id=1" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
+							<a href="../edit_page/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="material-icons">edit</i></a>
+							<a href="../delete_kategori/?id=1" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
+						</td>
+			          </tr>
+			          <tr>
+			            <td>Upgrading From a Previous Version</td>
+			            <td>22/8/2016</td>
+						<td>
+							<a href="../view_kategori/?id=1" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
+							<a href="../edit_page/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="material-icons">edit</i></a>
+							<a href="../delete_kategori/?id=1" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
+						</td>
+			          </tr>
+					  <tr>
+			            <td>Troubleshooting</td>
+			            <td>23/8/2016</td>
+						<td>
+							<a href="../view_kategori/?id=1" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
+							<a href="../edit_page/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="material-icons">edit</i></a>
+							<a href="../delete_kategori/?id=1" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
+						</td>
+			          </tr>
+			        </tbody>
+			      </table>
+			</div>
+  		</div>
 	</div>
 </main>
 

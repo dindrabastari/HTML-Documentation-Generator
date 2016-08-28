@@ -1,3 +1,9 @@
+<?php
+	include '../core/db.php';
+	
+	$sql = "SELECT * FROM documentation ORDER BY id DESC";
+	$result = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,9 +82,10 @@
 
 <main>
 	<div class="container-fluid">
-		<h5 class="header-title center">List of Your Documentation</h5>
+		<?php if ($result->num_rows > 0) { ?><h5 class="header-title center">List of Your Documentation</h5><?php } ?>
 		<div class="row">
 			<div class="col s12">
+				<?php if ($result->num_rows > 0) { ?>
 				<table class="responsive-table highlight">
 			        <thead>
 			          <tr>
@@ -89,35 +96,25 @@
 			        </thead>
 
 			        <tbody>
+				        <?php while($row = $result->fetch_assoc()) { ?>
 			          <tr>
-			            <td>Alvin</td>
-			            <td>Eclair</td>
+			            <td><?php echo $row['title']; ?></td>
+			            <td><?php echo $row['created_on']; ?></td>
 			            <td>
-							<a href="../view/?id=1" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="small material-icons">visibility</i></a>
-							<a href="../edit/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="small material-icons">edit</i></a>
-							<a href="../delete/?id=1" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="small material-icons">delete</i></a>
+							<a href="../view/?id=<?php echo $row['id']; ?>" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
+							<a href="../list_category/?id=<?php echo $row['id']; ?>" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="material-icons">edit</i></a>
+							<a href="../delete/?id=<?php echo $row['id']; ?>" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
 						</td>
 			          </tr>
-			          <tr>
-			            <td>Alan</td>
-			            <td>Jellybean</td>
-						<td>
-							<a href="../view/?id=1" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="small material-icons">visibility</i></a>
-							<a href="../edit/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="small material-icons">edit</i></a>
-							<a href="../delete/?id=1" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="small material-icons">delete</i></a>
-						</td>
-			          </tr>
-			          <tr>
-			            <td>Jonathan</td>
-			            <td>Lollipop</td>
-						<td>
-							<a href="../view/?id=1" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="small material-icons">visibility</i></a>
-							<a href="../edit/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="small material-icons">edit</i></a>
-							<a href="../delete/?id=1" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="small material-icons">delete</i></a>
-						</td>
-			          </tr>
+			          <?php } ?>
 			        </tbody>
 			      </table>
+			      <?php }else{ ?>
+			      <h5 class="center header-title">You dont have any documentation</h5>
+			      <div class="center">
+			      	<a href="../create/" class="waves-effect waves-light btn red lighten-2">Create New Documentation</a>
+			      </div>
+			      <?php } ?>
 			</div>
   		</div>
 	</div>

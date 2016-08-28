@@ -72,8 +72,8 @@
 		<li class="bold"><a href="../create" class="waves-effect waves-teal">Create New Documentation</a></li>
 		<li class="bold"><a href="../list" class="waves-effect waves-teal">Documentation List</a></li>
 		<li class="divider"><a>Documentation Sub Menu</a></li>
-		<li class="bold sub-menu"><a href="../create_category" class="waves-effect waves-teal">Add New Categories</a></li>
-		<li class="bold sub-menu"><a href="../list_category" class="waves-effect waves-teal">Categories List</a></li>
+		<li class="bold sub-menu"><a href="../create_category/?id=<?php echo $_GET['id']; ?>" class="waves-effect waves-teal">Add New Categories</a></li>
+		<li class="bold sub-menu"><a href="../list_category/?id=<?php echo $_GET['id']; ?>" class="waves-effect waves-teal">Categories List</a></li>
 	</ul>
 </header>
 
@@ -81,14 +81,14 @@
 	<div class="container valign">
 		<h5 class="header-title center">Create New Category for Test Documentation</h5>
 		<div class="row">
-    <form class="col s12">
+    <form class="col s12" action="?id=<?php echo $_GET['id']; ?>" method="post">
       <div class="row">
         <div class="input-field col s10">
-          <input id="judul" type="text" class="validate">
-          <label for="judul">Category Name</label>
+          <input id="name" type="text" class="validate" name="name">
+          <label for="name">Category Name</label>
         </div>
 		<div class="input-field col s2 center-align">
-			<button class="btn btn-floating waves-effect waves-light red" type="submit" name="action">
+			<button class="btn btn-floating waves-effect waves-light red" type="submit" name="submit">
 			  <i class="material-icons right">add</i>
 			</button>
 		</div>
@@ -125,3 +125,25 @@
 
 </body>
 </html>
+
+<?php
+	include '../core/db.php';
+	
+	if(isset($_POST['submit'])){
+		if($_POST['name'] != ""){
+			$sql = "INSERT INTO category (name, id_documentation) VALUES ('".mysql_escape_string($_POST['name'])."', ".$_GET['id'].")";
+
+			if ($conn->query($sql) === TRUE) {?>
+			    <script>
+			    	 Materialize.toast('Insert Success', 2000,'',function(){window.location = "../list_category/?id=<?php echo $_GET['id']; ?>";})
+			    </script>
+			<?php } else { ?>
+			    <script>
+			    	 Materialize.toast('Insert Failed', 4000);
+			    </script>
+			<?php }
+			
+			$conn->close();
+		}
+	}
+?>

@@ -78,14 +78,14 @@
 	<div class="container valign">
 		<h5 class="header-title center">Create New Documentation</h5>
 		<div class="row">
-    <form class="col s12">
+    <form class="col s12" action="" method="post">
       <div class="row">
         <div class="input-field col s10">
-          <input id="judul" type="text" class="validate">
-          <label for="judul">Documentation Title</label>
+          <input id="title" type="text" class="validate" name="title">
+          <label for="title">Documentation Title</label>
         </div>
 		<div class="input-field col s2 center-align">
-			<button class="btn btn-floating waves-effect waves-light red" type="submit" name="action">
+			<button class="btn btn-floating waves-effect waves-light red" type="submit" name="submit">
 			  <i class="material-icons right">add</i>
 			</button>
 		</div>
@@ -122,3 +122,25 @@
 
 </body>
 </html>
+
+<?php
+	include '../core/db.php';
+	
+	if(isset($_POST['submit'])){
+		if($_POST['title'] != ""){
+			$sql = "INSERT INTO documentation (title) VALUES ('".mysql_escape_string($_POST['title'])."')";
+
+			if ($conn->query($sql) === TRUE) {?>
+			    <script>
+			    	 Materialize.toast('Insert Success', 2000,'',function(){window.location = "../list";})
+			    </script>
+			<?php } else { ?>
+			    <script>
+			    	 Materialize.toast('Insert Failed', 4000);
+			    </script>
+			<?php }
+			
+			$conn->close();
+		}
+	}
+?>

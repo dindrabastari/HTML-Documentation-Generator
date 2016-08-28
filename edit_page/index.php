@@ -79,20 +79,37 @@
 
 <main class="valign-wrapper">
 	<div class="container valign">
-		<h5 class="header-title center">Edit 'Test' Documentation</h5>
+		<h5 class="header-title center">Edit 'Downloading CodeIgniter' Page</h5>
 		<div class="row">
     <form class="col s12">
       <div class="row">
-        <div class="input-field col s10">
-          <input id="judul" type="text" class="validate" value="Test Documentation">
-          <label for="judul">Documentation Title</label>
+        <div class="input-field col s6">
+          <input id="judul" type="text" class="validate" value="Downloading CodeIgniter">
+          <label for="judul">Page Title</label>
         </div>
-		<div class="input-field col s2 center-align">
-			<button class="btn btn-floating waves-effect waves-light red" type="submit" name="action">
-			  <i class="material-icons right">add</i>
-			</button>
-		</div>
+		<div class="input-field col s6">
+	    <select>
+	      <option value="" disabled selected>Choose page category</option>
+	      <option value="1">Welcome</option>
+	      <option value="2">Basic Info</option>
+	      <option value="3" selected="">Installation</option>
+	    </select>
+	    <label>Select Category</label>
+	  </div>
       </div>
+	  <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Textarea</label>
+        </div>
+	  </div>
+	  <div class="row">
+		  <div class="input-field col s12 center-align">
+  			<button class="btn waves-effect waves-light green" type="submit" name="action">Save Changes
+  			  <i class="material-icons right">done</i>
+  			</button>
+  		</div>
+	  </div>
     </form>
   </div>
 	</div>
@@ -119,8 +136,8 @@
 		);
 		$(document).ready(function(){
   $('.scrollspy').scrollSpy();
+  $('select').material_select();
 });
-
 </script>
 
 </body>

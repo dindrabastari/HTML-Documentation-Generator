@@ -79,13 +79,13 @@
 
 <main class="valign-wrapper">
 	<div class="container valign">
-		<h5 class="header-title center">Create New Documentation</h5>
+		<h5 class="header-title center">Create New Page</h5>
 		<div class="row">
     <form class="col s12">
       <div class="row">
         <div class="input-field col s10">
           <input id="judul" type="text" class="validate">
-          <label for="judul">Documentation Title</label>
+          <label for="judul">Page Title</label>
         </div>
 		<div class="input-field col s2 center-align">
 			<button class="btn btn-floating waves-effect waves-light red" type="submit" name="action">

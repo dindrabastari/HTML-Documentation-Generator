@@ -1,3 +1,21 @@
+<?php
+	include '../core/db.php';
+	
+	if(!isset($_GET['id']) || $_GET['id']== ""){
+		header('location: ../list');
+	}
+	
+	$sql = "SELECT * FROM documentation WHERE id=".$_GET['id'];
+	$result_doc = $conn->query($sql);
+	if($result_doc->num_rows < 1){
+		header('location: ../list');
+	}else{
+		$result_doc = mysqli_fetch_array($result_doc);
+	}
+	
+	$sql = "SELECT * FROM category WHERE id_documentation=".$_GET['id']." ORDER BY id DESC";
+	$result = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,59 +86,45 @@
 				<div class="search-results"></div>
 			</div>
 		</li>
-		<li class="bold"><a href="http://materializecss.com/mobile.html" class="waves-effect waves-teal">Dashboard</a></li>
-		<li class="bold"><a href="about.html" class="waves-effect waves-teal">Create New Documentation</a></li>
-		<li class="bold"><a href="getting-started.html" class="waves-effect waves-teal">Documentation List</a></li>
+		<li class="bold"><a href="../dashboard" class="waves-effect waves-teal">Dashboard</a></li>
+		<li class="bold"><a href="../create" class="waves-effect waves-teal">Create New Documentation</a></li>
+		<li class="bold"><a href="../list" class="waves-effect waves-teal">Documentation List</a></li>
 		<li class="divider"><a>Documentation Sub Menu</a></li>
-		<li class="bold sub-menu"><a href="../create_category" class="waves-effect waves-teal">Add New Categories</a></li>
-		<li class="bold sub-menu"><a href="../list_category" class="waves-effect waves-teal">Categories List</a></li>
+		<li class="bold sub-menu"><a href="../create_category/?id=<?php echo $_GET['id']; ?>" class="waves-effect waves-teal">Add New Categories</a></li>
+		<li class="bold sub-menu"><a href="../list_category/?id=<?php echo $_GET['id']; ?>" class="waves-effect waves-teal">Categories List</a></li>
 	</ul>
 </header>
 
 <main>
 	<div class="container-fluid">
-		<h5 class="header-title center">Test Documentation Categories</h5>
+		<h5 class="header-title center"><?php echo $result_doc['title'] ?><small><a href="../edit/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Documentation Name"><i class="material-icons">edit</i></a></small></h5>
 		<div class="row">
 			<div class="col s12">
+				<?php if ($result->num_rows > 0) { ?>
 				<table class="responsive-table highlight">
 			        <thead>
 			          <tr>
-			              <th data-field="id">Name</th>
+			              <th data-field="id">Category Name</th>
 			              <th data-field="name">Creation Date</th>
 			              <th data-field="price">Action</th>
 			          </tr>
 			        </thead>
 
 			        <tbody>
+				        <?php while($row = $result->fetch_assoc()) { ?>
 			          <tr>
-			            <td>Alvin</td>
-			            <td>Eclair</td>
+			            <td><?php echo $row['name']; ?></td>
+			            <td><?php echo $row['created_on']; ?></td>
 			            <td>
-							<a href="../view_kategori/?id=1" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="small material-icons">visibility</i></a>
-							<a href="../edit_kategori/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="small material-icons">edit</i></a>
-							<a href="../delete_kategori/?id=1" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="small material-icons">delete</i></a>
+							<a href="../view_kategori/?id=1" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
+							<a href="../list_page/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="material-icons">edit</i></a>
+							<a href="../delete_kategori/?id=1" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
 						</td>
 			          </tr>
-			          <tr>
-			            <td>Alan</td>
-			            <td>Jellybean</td>
-						<td>
-							<a href="../view_kategori/?id=1" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="small material-icons">visibility</i></a>
-							<a href="../edit_kategori/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="small material-icons">edit</i></a>
-							<a href="../delete_kategori/?id=1" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="small material-icons">delete</i></a>
-						</td>
-			          </tr>
-			          <tr>
-			            <td>Jonathan</td>
-			            <td>Lollipop</td>
-						<td>
-							<a href="../view_kategori/?id=1" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="small material-icons">visibility</i></a>
-							<a href="../edit_kategori/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="small material-icons">edit</i></a>
-							<a href="../delete_kategori/?id=1" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="small material-icons">delete</i></a>
-						</td>
-			          </tr>
+			          <?php } ?>
 			        </tbody>
 			      </table>
+			      <?php } ?>
 			</div>
   		</div>
 	</div>
