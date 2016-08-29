@@ -107,7 +107,7 @@
 
 <main>
 	<div class="container-fluid">
-		<h5 class="header-title center"><?php echo $result_cat['name']; ?> Category<small><a href="../edit_category/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Category Name"><i class=" material-icons">edit</i></a></small></h5>
+		<h5 class="header-title center"><?php echo $result_cat['name']; ?> Category<small><a href="../edit_category/?documentation=<?php echo $_GET['documentation']; ?>&category=<?php echo $_GET['category']; ?>" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Category Name"><i class=" material-icons">edit</i></a></small></h5>
 		<div class="row">
 			<div class="col s12">
 				<?php if ($result->num_rows > 0) { ?>

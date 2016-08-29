@@ -1,3 +1,18 @@
+<?php
+	include '../core/db.php';
+	
+	if(!isset($_GET['documentation']) || $_GET['documentation']== ""){
+		header('location: ../list');
+	}
+	
+	$sql = "SELECT * FROM documentation WHERE id=".$_GET['documentation'];
+	$result_doc = $conn->query($sql);
+	if($result_doc->num_rows < 1){
+		header('location: ../list');
+	}else{
+		$result_doc = mysqli_fetch_array($result_doc);
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,17 +94,17 @@
 
 <main class="valign-wrapper">
 	<div class="container valign">
-		<h5 class="header-title center">Edit 'Test' Documentation</h5>
+		<h5 class="header-title center">Edit '<?php echo $result_doc['title']?>' Documentation</h5>
 		<div class="row">
-    <form class="col s12">
+    <form class="col s12" action="?documentation=<?php echo $result_doc['id']?>" method="post">
       <div class="row">
         <div class="input-field col s10">
-          <input id="judul" type="text" class="validate" value="Test Documentation">
-          <label for="judul">Documentation Title</label>
+          <input id="title" name="title" type="text" class="validate" value="<?php echo $result_doc['title']?>">
+          <label for="title">Documentation Title</label>
         </div>
 		<div class="input-field col s2 center-align">
-			<button class="btn btn-floating waves-effect waves-light red" type="submit" name="action">
-			  <i class="material-icons right">add</i>
+			<button class="btn btn-floating waves-effect waves-light green" type="submit" name="submit">
+			  <i class="material-icons right">done</i>
 			</button>
 		</div>
       </div>
@@ -125,3 +140,26 @@
 
 </body>
 </html>
+
+
+<?php
+	
+	if(isset($_POST['submit'])){
+		if($_POST['title'] != ""){
+			$sql = "UPDATE documentation SET title = '".mysql_escape_string($_POST['title'])." WHERE id = ".$_GET['documentation'];
+
+			if ($conn->query($sql) === TRUE) {?>
+			    <script>
+			    	 Materialize.toast('Insert Success', 2000,'',function(){window.location = "../list/";});
+			    </script>
+			<?php } else { ?>
+			    <script>
+			    	 Materialize.toast('Insert Failed', 4000);
+			    </script>
+			<?php }
+			
+			$conn->close();
+		}
+	}
+?>
+

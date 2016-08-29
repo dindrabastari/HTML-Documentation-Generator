@@ -1,3 +1,18 @@
+<?php
+	include '../core/db.php';
+	
+	if(!isset($_GET['documentation']) || $_GET['documentation']== "" || !isset($_GET['category']) || $_GET['category']== ""){
+		header('location: ../list_category/?documentation='.$_GET['documentation']);
+	}
+	
+	$sql = "SELECT * FROM category WHERE id=".$_GET['category'];
+	$result_cat = $conn->query($sql);
+	if($result_cat->num_rows < 1){
+		header('location: ../list');
+	}else{
+		$result_cat = mysqli_fetch_array($result_cat);
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,16 +94,16 @@
 
 <main class="valign-wrapper">
 	<div class="container valign">
-		<h5 class="header-title center">Edit 'Installation' Category for Test Documentation</h5>
+		<h5 class="header-title center">Edit '<?php echo $result_cat['name']; ?>' Category</h5>
 		<div class="row">
-    <form class="col s12">
+    <form class="col s12" action="?documentation=<?php echo $_GET['documentation']; ?>&category=<?php echo $_GET['category']; ?>" method="post">
       <div class="row">
         <div class="input-field col s10">
-          <input id="judul" type="text" class="validate">
-          <label for="judul">Category Name</label>
+          <input id="name" type="text" class="validate" value="<?php echo $result_cat['name']; ?>" name="name">
+          <label for="name">Category Name</label>
         </div>
 		<div class="input-field col s2 center-align">
-			<button class="btn btn-floating waves-effect waves-light red" type="submit" name="action">
+			<button class="btn btn-floating waves-effect waves-light red" type="submit" name="submit">
 			  <i class="material-icons right">add</i>
 			</button>
 		</div>
@@ -125,3 +140,25 @@
 
 </body>
 </html>
+
+
+<?php
+	
+	if(isset($_POST['submit'])){
+		if($_POST['name'] != ""){
+			$sql = "UPDATE category SET name = '".mysql_escape_string($_POST['name'])."' WHERE id = ".$_GET['category'];
+
+			if ($conn->query($sql) === TRUE) {?>
+			    <script>
+			    	 Materialize.toast('Insert Success', 2000,'',function(){window.location = "../list_category/?documentation=<?php echo $_GET['documentation']; ?>";});
+			    </script>
+			<?php } else { ?>
+			    <script>
+			    	 Materialize.toast('Insert Failed', 4000);
+			    </script>
+			<?php }
+			
+			$conn->close();
+		}
+	}
+?>

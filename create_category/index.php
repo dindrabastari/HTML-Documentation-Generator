@@ -137,7 +137,7 @@
 
 			if ($conn->query($sql) === TRUE) {?>
 			    <script>
-			    	 Materialize.toast('Insert Success', 2000,'',function(){window.location = "../list_category/?documentation=<?php echo $_GET['documentation']; ?>";})
+			    	 Materialize.toast('Insert Success', 2000,'',function(){window.location = "../list_category/?documentation="+<?php echo $_GET['documentation']; ?>;});
 			    </script>
 			<?php } else { ?>
 			    <script>

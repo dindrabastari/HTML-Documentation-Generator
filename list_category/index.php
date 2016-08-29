@@ -93,13 +93,12 @@
 		<li class="bold sub-menu"><a href="../create_category/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-teal">Add New Categories</a></li>
 		<li class="bold sub-menu"><a href="../list_category/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-teal">Categories List</a></li>
 		<li class="bold sub-menu"><a href="../create_page/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-teal">Add New Page</a></li>
-		<li class="bold sub-menu"><a href="../list_page/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-teal">Pages List</a></li>
 	</ul>
 </header>
 
 <main>
 	<div class="container-fluid">
-		<h5 class="header-title center"><?php echo $result_doc['title'] ?><small><a href="../edit/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Documentation Name"><i class="material-icons">edit</i></a></small></h5>
+		<h5 class="header-title center"><?php echo $result_doc['title'] ?><small><a href="../edit/?documentation=<?php echo $result_doc['id'] ?>" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Documentation Name"><i class="material-icons">edit</i></a></small></h5>
 		<div class="row">
 			<div class="col s12">
 				<?php if ($result->num_rows > 0) { ?>

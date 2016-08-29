@@ -1,3 +1,24 @@
+<?php
+	include '../core/db.php';
+	
+	if(!isset($_GET['documentation']) || $_GET['documentation']== "" || !isset($_GET['category']) || $_GET['category']== "" || !isset($_GET['page']) || $_GET['page']== ""){
+		header('location: ../list_page/?documentation='.$_GET['documentation'].'category='.$_GET['category']);
+	}
+	
+	$sql = "SELECT * FROM category WHERE id_documentation=".$_GET['documentation'];
+	$result_doc = $conn->query($sql);
+	if($result_doc->num_rows < 1){
+		header('location: ../list');
+	}
+	
+	$sql = "SELECT * FROM page WHERE id=".$_GET['page'];
+	$result_page = $conn->query($sql);
+	if($result_page->num_rows < 1){
+		header('location: ../list_page/?documentation='.$_GET['documentation'].'category='.$_GET['category']);
+	}else{
+		$result_page = mysqli_fetch_array($result_page);
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,33 +100,33 @@
 
 <main class="valign-wrapper">
 	<div class="container valign">
-		<h5 class="header-title center">Edit 'Downloading CodeIgniter' Page</h5>
+		<h5 class="header-title center">Edit '<?php echo $result_page['title']; ?>' Page</h5>
 		<div class="row">
-    <form class="col s12">
+    <form class="col s12" action="?documentation=<?php echo $_GET['documentation']; ?>&category=<?php echo $_GET['category']; ?>&page=<?php echo $_GET['page']; ?>" method="post">
       <div class="row">
         <div class="input-field col s6">
-          <input id="judul" type="text" class="validate" value="Downloading CodeIgniter">
-          <label for="judul">Page Title</label>
+          <input id="title" type="text" class="validate" value="<?php echo $result_page['title']; ?>" name="title">
+          <label for="title">Page Title</label>
         </div>
 		<div class="input-field col s6">
-	    <select>
+	    <select name="category">
 	      <option value="" disabled selected>Choose page category</option>
-	      <option value="1">Welcome</option>
-	      <option value="2">Basic Info</option>
-	      <option value="3" selected="">Installation</option>
+	      <?php while($row = $result_doc->fetch_assoc()) { ?>
+	      <option value="<?php echo $row['id']; ?>" <?php if($row['id']==$_GET['category']) echo 'selected' ?>><?php echo $row['name']; ?></option>
+	      <?php } ?>
 	    </select>
 	    <label>Select Category</label>
 	  </div>
       </div>
 	  <div class="row">
         <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
-          <label for="textarea1">Textarea</label>
+          <textarea id="textarea1" class="materialize-textarea" name="content"><?php echo $result_page['content']; ?></textarea>
+          <label for="textarea1">Page Content</label>
         </div>
 	  </div>
 	  <div class="row">
 		  <div class="input-field col s12 center-align">
-  			<button class="btn waves-effect waves-light green" type="submit" name="action">Save Changes
+  			<button class="btn waves-effect waves-light green" type="submit" name="submit">Save Changes
   			  <i class="material-icons right">done</i>
   			</button>
   		</div>
@@ -142,3 +163,23 @@
 
 </body>
 </html>
+<?php
+	
+	if(isset($_POST['submit'])){
+		if($_POST['title'] != "" && $_POST['content'] != "" && $_POST['category'] != ""){
+			$sql = "UPDATE page SET title = '".mysql_escape_string($_POST['title'])."', id_category=".$_POST['category'].", content='".$_POST['content']."' WHERE id = ".$_GET['page'];
+
+			if ($conn->query($sql) === TRUE) {?>
+			    <script>
+			    	 Materialize.toast('Insert Success', 2000,'',function(){window.location = "../list_page/?documentation=<?php echo $_GET['documentation']; ?>&category=<?php echo $_GET['category']; ?>";});
+			    </script>
+			<?php } else { ?>
+			    <script>
+			    	 Materialize.toast('Insert Failed', 4000);
+			    </script>
+			<?php }
+			
+			$conn->close();
+		}
+	}
+?>
