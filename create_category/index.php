@@ -72,8 +72,10 @@
 		<li class="bold"><a href="../create" class="waves-effect waves-teal">Create New Documentation</a></li>
 		<li class="bold"><a href="../list" class="waves-effect waves-teal">Documentation List</a></li>
 		<li class="divider"><a>Documentation Sub Menu</a></li>
-		<li class="bold sub-menu"><a href="../create_category/?id=<?php echo $_GET['id']; ?>" class="waves-effect waves-teal">Add New Categories</a></li>
-		<li class="bold sub-menu"><a href="../list_category/?id=<?php echo $_GET['id']; ?>" class="waves-effect waves-teal">Categories List</a></li>
+		<li class="bold sub-menu"><a href="../create_category/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-teal">Add New Categories</a></li>
+		<li class="bold sub-menu"><a href="../list_category/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-teal">Categories List</a></li>
+		<li class="bold sub-menu"><a href="../create_page/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-teal">Add New Page</a></li>
+		<li class="bold sub-menu"><a href="../list_page/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-teal">Pages List</a></li>
 	</ul>
 </header>
 
@@ -81,7 +83,7 @@
 	<div class="container valign">
 		<h5 class="header-title center">Create New Category for Test Documentation</h5>
 		<div class="row">
-    <form class="col s12" action="?id=<?php echo $_GET['id']; ?>" method="post">
+    <form class="col s12" action="?documentation=<?php echo $_GET['documentation']; ?>" method="post">
       <div class="row">
         <div class="input-field col s10">
           <input id="name" type="text" class="validate" name="name">
@@ -131,11 +133,11 @@
 	
 	if(isset($_POST['submit'])){
 		if($_POST['name'] != ""){
-			$sql = "INSERT INTO category (name, id_documentation) VALUES ('".mysql_escape_string($_POST['name'])."', ".$_GET['id'].")";
+			$sql = "INSERT INTO category (name, id_documentation) VALUES ('".mysql_escape_string($_POST['name'])."', ".$_GET['documentation'].")";
 
 			if ($conn->query($sql) === TRUE) {?>
 			    <script>
-			    	 Materialize.toast('Insert Success', 2000,'',function(){window.location = "../list_category/?id=<?php echo $_GET['id']; ?>";})
+			    	 Materialize.toast('Insert Success', 2000,'',function(){window.location = "../list_category/?documentation=<?php echo $_GET['documentation']; ?>";})
 			    </script>
 			<?php } else { ?>
 			    <script>
