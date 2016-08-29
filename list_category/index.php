@@ -1,11 +1,11 @@
 <?php
 	include '../core/db.php';
 	
-	if(!isset($_GET['id']) || $_GET['id']== ""){
+	if(!isset($_GET['documentation']) || $_GET['documentation']== ""){
 		header('location: ../list');
 	}
 	
-	$sql = "SELECT * FROM documentation WHERE id=".$_GET['id'];
+	$sql = "SELECT * FROM documentation WHERE id=".$_GET['documentation'];
 	$result_doc = $conn->query($sql);
 	if($result_doc->num_rows < 1){
 		header('location: ../list');
@@ -13,7 +13,7 @@
 		$result_doc = mysqli_fetch_array($result_doc);
 	}
 	
-	$sql = "SELECT * FROM category WHERE id_documentation=".$_GET['id']." ORDER BY id DESC";
+	$sql = "SELECT * FROM category WHERE id_documentation=".$_GET['documentation']." ORDER BY id DESC";
 	$result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -90,8 +90,10 @@
 		<li class="bold"><a href="../create" class="waves-effect waves-teal">Create New Documentation</a></li>
 		<li class="bold"><a href="../list" class="waves-effect waves-teal">Documentation List</a></li>
 		<li class="divider"><a>Documentation Sub Menu</a></li>
-		<li class="bold sub-menu"><a href="../create_category/?id=<?php echo $_GET['id']; ?>" class="waves-effect waves-teal">Add New Categories</a></li>
-		<li class="bold sub-menu"><a href="../list_category/?id=<?php echo $_GET['id']; ?>" class="waves-effect waves-teal">Categories List</a></li>
+		<li class="bold sub-menu"><a href="../create_category/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-teal">Add New Categories</a></li>
+		<li class="bold sub-menu"><a href="../list_category/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-teal">Categories List</a></li>
+		<li class="bold sub-menu"><a href="../create_page/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-teal">Add New Page</a></li>
+		<li class="bold sub-menu"><a href="../list_page/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-teal">Pages List</a></li>
 	</ul>
 </header>
 
@@ -116,14 +118,19 @@
 			            <td><?php echo $row['name']; ?></td>
 			            <td><?php echo $row['created_on']; ?></td>
 			            <td>
-							<a href="../view_kategori/?id=1" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
-							<a href="../list_page/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="material-icons">edit</i></a>
-							<a href="../delete_kategori/?id=1" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
+							<a href="../view_kategori/?documentation=<?php echo $_GET['documentation']; ?>&category=<?php echo $row['id']; ?>" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
+							<a href="../list_page/?documentation=<?php echo $_GET['documentation']; ?>&category=<?php echo $row['id']; ?>" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="material-icons">edit</i></a>
+							<a href="../delete_kategori/?documentation=<?php echo $_GET['documentation']; ?>&category=<?php echo $row['id']; ?>" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
 						</td>
 			          </tr>
 			          <?php } ?>
 			        </tbody>
 			      </table>
+			      <?php }else{ ?>
+			      <h5 class="center header-title">You dont have any category in this documentation</h5>
+			      <div class="center">
+			      	<a href="../create_category/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-light btn red lighten-2">Create New Category</a>
+			      </div>
 			      <?php } ?>
 			</div>
   		</div>

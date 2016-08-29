@@ -101,9 +101,9 @@
 			            <td><?php echo $row['title']; ?></td>
 			            <td><?php echo $row['created_on']; ?></td>
 			            <td>
-							<a href="../view/?id=<?php echo $row['id']; ?>" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
-							<a href="../list_category/?id=<?php echo $row['id']; ?>" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="material-icons">edit</i></a>
-							<a href="../delete/?id=<?php echo $row['id']; ?>" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
+							<a href="../view/?documentation=<?php echo $row['id']; ?>" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
+							<a href="../list_category/?documentation=<?php echo $row['id']; ?>" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="material-icons">edit</i></a>
+							<a href="../delete/?documentation=<?php echo $row['id']; ?>" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
 						</td>
 			          </tr>
 			          <?php } ?>

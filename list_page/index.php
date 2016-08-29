@@ -1,3 +1,29 @@
+<?php
+	include '../core/db.php';
+	
+	if(!isset($_GET['documentation']) || $_GET['documentation']== "" || !isset($_GET['category'])  || $_GET['category']== ""){
+		header('location: ../list');
+	}
+	
+	$sql = "SELECT * FROM documentation WHERE id=".$_GET['documentation'];
+	$result_doc = $conn->query($sql);
+	if($result_doc->num_rows < 1){
+		header('location: ../list');
+	}else{
+		$result_doc = mysqli_fetch_array($result_doc);
+	}
+	
+	$sql = "SELECT * FROM category WHERE id=".$_GET['category'];
+	$result_cat = $conn->query($sql);
+	if($result_cat->num_rows < 1){
+		header('location: ../list');
+	}else{
+		$result_cat = mysqli_fetch_array($result_cat);
+	}
+	
+	$sql = "SELECT * FROM page WHERE id_category=".$_GET['category']." ORDER BY id DESC";
+	$result = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,20 +94,23 @@
 				<div class="search-results"></div>
 			</div>
 		</li>
-		<li class="bold"><a href="http://materializecss.com/mobile.html" class="waves-effect waves-teal">Dashboard</a></li>
-		<li class="bold"><a href="about.html" class="waves-effect waves-teal">Create New Documentation</a></li>
-		<li class="bold"><a href="getting-started.html" class="waves-effect waves-teal">Documentation List</a></li>
-		<li class="divider"><a>Documentation Sub Menu</a></li>
-		<li class="bold sub-menu"><a href="../create_category" class="waves-effect waves-teal">Add New Categories</a></li>
-		<li class="bold sub-menu"><a href="../list_category" class="waves-effect waves-teal">Categories List</a></li>
+		<li class="bold"><a href="../dashboard" class="waves-effect waves-teal">Dashboard</a></li>
+		<li class="bold"><a href="../create" class="waves-effect waves-teal">Create New Documentation</a></li>
+		<li class="bold"><a href="../list" class="waves-effect waves-teal">Documentation List</a></li>
+		<li class="divider"><a><?php echo $result_doc['title']; ?> Sub Menu</a></li>
+		<li class="bold sub-menu"><a href="../create_category/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-teal">Add New Categories</a></li>
+		<li class="bold sub-menu"><a href="../list_category/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-teal">Categories List</a></li>
+		<li class="bold sub-menu"><a href="../create_page/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-teal">Add New Page</a></li>
+		<li class="bold sub-menu"><a href="../list_page/?documentation=<?php echo $_GET['documentation']; ?>" class="waves-effect waves-teal">Pages List</a></li>
 	</ul>
 </header>
 
 <main>
 	<div class="container-fluid">
-		<h5 class="header-title center">Installation Category<small><a href="../edit_category/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Category Name"><i class=" material-icons">edit</i></a></small></h5>
+		<h5 class="header-title center"><?php echo $result_cat['name']; ?> Category<small><a href="../edit_category/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Category Name"><i class=" material-icons">edit</i></a></small></h5>
 		<div class="row">
 			<div class="col s12">
+				<?php if ($result->num_rows > 0) { ?>
 				<table class="responsive-table highlight">
 			        <thead>
 			          <tr>
@@ -92,44 +121,25 @@
 			        </thead>
 
 			        <tbody>
+				        <?php while($row = $result->fetch_assoc()) { ?>
 			          <tr>
-			            <td>Downloading CodeIgniter</td>
-			            <td>21/8/2016</td>
+			            <td><?php echo $row['title']; ?></td>
+			            <td><?php echo $row['created_on']; ?></td>
 			            <td>
-							<a href="../view_kategori/?id=1" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
-							<a href="../edit_page/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="material-icons">edit</i></a>
-							<a href="../delete_kategori/?id=1" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
+							<a href="../view_page/?documentation=<?php echo $_GET['documentation']; ?>&category=<?php echo $_GET['category']; ?>&page=<?php echo $row['id']; ?>" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
+							<a href="../edit_page/?documentation=<?php echo $_GET['documentation']; ?>&category=<?php echo $_GET['category']; ?>&page=<?php echo $row['id']; ?>" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="material-icons">edit</i></a>
+							<a href="../delete_page/?documentation=<?php echo $_GET['documentation']; ?>&category=<?php echo $_GET['category']; ?>&page=<?php echo $row['id']; ?>" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
 						</td>
 			          </tr>
-			          <tr>
-			            <td>Installation Instructions</td>
-			            <td>21/8/2016</td>
-						<td>
-							<a href="../view_kategori/?id=1" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
-							<a href="../edit_page/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="material-icons">edit</i></a>
-							<a href="../delete_kategori/?id=1" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
-						</td>
-			          </tr>
-			          <tr>
-			            <td>Upgrading From a Previous Version</td>
-			            <td>22/8/2016</td>
-						<td>
-							<a href="../view_kategori/?id=1" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
-							<a href="../edit_page/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="material-icons">edit</i></a>
-							<a href="../delete_kategori/?id=1" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
-						</td>
-			          </tr>
-					  <tr>
-			            <td>Troubleshooting</td>
-			            <td>23/8/2016</td>
-						<td>
-							<a href="../view_kategori/?id=1" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
-							<a href="../edit_page/?id=1" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="material-icons">edit</i></a>
-							<a href="../delete_kategori/?id=1" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
-						</td>
-			          </tr>
+			          <?php } ?>
 			        </tbody>
 			      </table>
+			      <?php }else{ ?>
+			      <h5 class="center header-title">You dont have any page in this category</h5>
+			      <div class="center">
+			      	<a href="../create_page/?documentation=<?php echo $_GET['documentation']; ?>&category=<?php echo $_GET['category']; ?>" class="waves-effect waves-light btn red lighten-2">Create New Page</a>
+			      </div>
+			      <?php } ?>
 			</div>
   		</div>
 	</div>
