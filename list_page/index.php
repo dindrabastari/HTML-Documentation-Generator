@@ -128,7 +128,7 @@
 			            <td>
 							<a href="../view_page/?documentation=<?php echo $_GET['documentation']; ?>&category=<?php echo $_GET['category']; ?>&page=<?php echo $row['id']; ?>" class="green-text tooltipped" data-position="top" data-delay="50" data-tooltip="View"><i class="material-icons">visibility</i></a>
 							<a href="../edit_page/?documentation=<?php echo $_GET['documentation']; ?>&category=<?php echo $_GET['category']; ?>&page=<?php echo $row['id']; ?>" class="orange-text tooltipped" data-position="top" data-delay="50" data-tooltip="Edit"><i class="material-icons">edit</i></a>
-							<a href="../delete_page/?documentation=<?php echo $_GET['documentation']; ?>&category=<?php echo $_GET['category']; ?>&page=<?php echo $row['id']; ?>" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
+							<a href="../delete.php?page=<?php echo $row['id']; ?>&type=page" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
 						</td>
 			          </tr>
 			          <?php } ?>

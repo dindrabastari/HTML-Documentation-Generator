@@ -30,6 +30,23 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="../css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	<link href="../css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+  <script>
+  tinymce.init({
+  selector: 'textarea',
+  height: 500,
+  plugins: [
+        "advlist autolink lists link image charmap print preview anchor",
+        "searchreplace visualblocks code fullscreen",
+        "insertdatetime media table contextmenu paste imagetools"
+    ],
+    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+  imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
+  content_css: [
+    '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+    '//www.tinymce.com/css/codepen.min.css'
+  ]
+});</script>
 </head>
 <body>
 	<header>
@@ -120,8 +137,7 @@
       </div>
 	  <div class="row">
         <div class="input-field col s12">
-          <textarea id="textarea1" class="materialize-textarea" name="content"><?php echo $result_page['content']; ?></textarea>
-          <label for="textarea1">Page Content</label>
+          <textarea id="textarea1" name="content"><?php echo $result_page['content']; ?></textarea>
         </div>
 	  </div>
 	  <div class="row">
